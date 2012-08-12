@@ -15,7 +15,7 @@ This is an installer for Phabricators command line tool Arcanist.  It simplifies
 [Arcanist](https://github.com/facebook/arcanist) to make your life easier.
 
 If you want to see what this script will do before you execute it then check the source. It's located
-[HERE](https://github.com/tmeusburger/arcanist-installer/blob/go/arcanist-installer.rb) Did you actually click
+[HERE](https://github.com/tmeusburger/arcanist-installer/blob/go/arcanist-installer.rb). Did you actually click
 that link? No seriously, do it. Like now, [**click
 it**](https://github.com/tmeusburger/arcanist-installer/blob/go/arcanist-installer.rb).  Make sure I'm not
 doing something evil.  Like this...
