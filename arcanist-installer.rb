@@ -4,7 +4,7 @@
 #   this on a linux distro.
 #
 # Give credit where credit is due -- https://raw.github.com/mxcl/homebrew/go
-# This script was based on the awesome homebrew installer
+# This script was heavily based on the awesome homebrew installer
 
 # This script installs to /usr/local only. To install elsewhere you will have to manually do it yourself!
 # --- Manual Install to /usr/local ---
@@ -87,7 +87,7 @@ def file_exists file_path
 end
 
 
-#### Validation functions ####
+### Validation functions ###
 
 
 # Leaving this here even though it should work regardless of version number.
@@ -193,6 +193,6 @@ puts ""
 ohai "Installation successful!"
 puts ""
 puts "To confirm installation please type:" 
-puts "  arc help"
 puts "  arc upgrade"
+puts "  arc help"
 puts "If neither command errors out the install was *truly* successful"
