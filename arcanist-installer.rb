@@ -189,9 +189,14 @@ end
 
 warn "/usr/local/bin is not in your PATH.  Arcanist will not work unless you place /usr/local/bin in your PATH" unless ENV['PATH'].split(':').include? '/usr/local/bin'
 
-puts ""
+ohai "Caveats"
+puts <<-EOS
+
+Arcanist comes with a bash completion script.  To include it source the following file in your bash_profile/bashrc file
+  source #{ARCANIST_INSTALL_LOCATION}/arcanist/resources/shell/bash-completion
+
+EOS
 ohai "Installation successful!"
-puts ""
 puts "To confirm installation please type:" 
 puts "  arc upgrade"
 puts "  arc help"
