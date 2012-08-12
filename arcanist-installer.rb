@@ -184,7 +184,7 @@ Dir.chdir ARCANIST_INSTALL_LOCATION do
   ohai "Downloading and Installing libphutil..."
   system "git clone https://github.com/facebook/libphutil.git"
   ohai "Linking /usr/local/phabricator/arcanist/bin/arc to /usr/local/bin/arc..."
-  File.symlink "#{ARCANIST_INSTALL_LOCATION}/arcanist/bin/arc", "#{USR_LOCAL_BIN}/arc"
+  sudo "/bin/ln -s #{ARCANIST_INSTALL_LOCATION}/arcanist/bin/arc #{USR_LOCAL_BIN}/arc"
 end
 
 warn "/usr/local/bin is not in your PATH.  Arcanist will not work unless you place /usr/local/bin in your PATH" unless ENV['PATH'].split(':').include? '/usr/local/bin'
