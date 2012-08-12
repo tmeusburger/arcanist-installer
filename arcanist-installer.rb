@@ -171,7 +171,7 @@ if STDIN.tty?
 end
  
 if File.directory? "/usr/local"
-  system "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION 
+  sudo "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION 
 
   # The reason we do this it to allow upgrading of arcanist through 'arc upgrade' without requiring sudo
   sudo "/bin/chmod", "g+rwx", ARCANIST_INSTALL_LOCATION
