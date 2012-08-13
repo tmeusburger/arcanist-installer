@@ -141,9 +141,15 @@ Conflict: /usr/local/bin/arc
 EOABORT
 end
 
+def usr_local_exists?
+abort <<-EOABORT if file_exists "/usr/local"
+There is no /usr/local
+EOABORT
+end
 ####################################################################### script
 
 # Do some checks, abort if any failures occur
+usr_local_exists?
 current_os?
 not_root?
 git_installed?
@@ -152,6 +158,7 @@ arcanist_already_installed?
 arcanist_already_symlinked?
 
 ohai "This script will install:"
+puts "/usr/local/bin" unless file_exists? "/usr/local/bin"
 puts "/usr/local/bin/arc"
 puts "/usr/local/phabricator/"
 puts "/usr/local/phabricator/arcanist/..."
@@ -169,6 +176,8 @@ if STDIN.tty?
   # we test for \r and \n because some stuff does \r instead
   abort unless c == 13 or c == 10
 end
+
+sudo "/bin/mkdir /usr/local/bin" unless file_exists? "/usr/local/bin"
  
 if File.directory? "/usr/local"
   sudo "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION 
