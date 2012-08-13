@@ -141,15 +141,9 @@ Conflict: /usr/local/bin/arc
 EOABORT
 end
 
-def usr_local_exists?
-abort <<-EOABORT if file_exists "/usr/local"
-There is no /usr/local
-EOABORT
-end
 ####################################################################### script
 
 # Do some checks, abort if any failures occur
-usr_local_exists?
 current_os?
 not_root?
 git_installed?
