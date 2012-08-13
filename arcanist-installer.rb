@@ -152,7 +152,7 @@ arcanist_already_installed?
 arcanist_already_symlinked?
 
 ohai "This script will install:"
-puts "/usr/local/bin" unless file_exists? "/usr/local/bin"
+puts "/usr/local/bin" unless file_exists "/usr/local/bin"
 puts "/usr/local/bin/arc"
 puts "/usr/local/phabricator/"
 puts "/usr/local/phabricator/arcanist/..."
@@ -171,7 +171,7 @@ if STDIN.tty?
   abort unless c == 13 or c == 10
 end
 
-sudo "/bin/mkdir /usr/local/bin" unless file_exists? "/usr/local/bin"
+sudo "/bin/mkdir /usr/local/bin" unless file_exists "/usr/local/bin"
  
 if File.directory? "/usr/local"
   sudo "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION 
