@@ -117,8 +117,8 @@ end
 def user_admin?
 abort <<-EOABORT unless `groups`.split.include? "admin"
 This script requires the user #{ENV['USER']} to be an Administrator.  Theoretically you're a developer
-installing ARC on your machine so this shouldn't be a problem.  Just make sure your on the right user account
-before rerunning the script
+installing ARC on your machine so this shouldn't be a problem.  Just make sure you're on the right user account
+before re-running the script
 EOABORT
 end
 
@@ -133,7 +133,7 @@ end
 
 def arcanist_already_symlinked?
 abort <<-EOABORT if file_exists "/usr/local/bin/arc"
-It seem's you already have a peice of software installed called arc in /usr/local/bin.  If this is the case you've
+It seem's you already have a piece of software installed called arc in /usr/local/bin.  If this is the case you've
 either installed arcanist previously or have a conflicting piece of software installed with the same name.  You
 should either uninstall the conflicting arc software or execute a manual install.
 
