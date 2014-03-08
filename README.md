@@ -3,7 +3,7 @@
 ### Installation
 To install simply paste the following command in your terminal.  Thats it.  It'll explain what it is going to do then ask for confirmation. Done.
 
-    ruby <(curl -fsSk https://raw.github.com/tmeusburger/arcanist-installer/go)
+    ruby <(curl -fsSk https://raw.github.com/tmeusburger/arcanist-installer/go/install)
 
 ### Background
 
