@@ -13,14 +13,14 @@
 #  chgrp admin /usr/local/phabricator
 #  cd /usr/local/phabricator
 #  git clone https://github.com/facebook/arcanist.git
-#  git clone https://github.com/facebook/libphutil.git 
+#  git clone https://github.com/facebook/libphutil.git
 #  ln -s /usr/local/phabricator/arcanist/bin/arc /usr/local/bin/arc
 
 # --- Manual Install to home directory ---
 #  mkdir ~/phabricator
 #  cd ~/phabricator
 #  git clone https://github.com/facebook/arcanist.git
-#  git clone https://github.com/facebook/libphutil.git 
+#  git clone https://github.com/facebook/libphutil.git
 #  ln -s ~/phabricator/arcanist/bin/arc /usr/local/bin/arc
 
 
@@ -52,7 +52,7 @@ end
 def warn warning
   puts "#{Tty.red}Warning#{Tty.reset}: #{warning.chomp}"
 end
- 
+
 def system *args
   abort "Failed during: #{args.shell_s}" unless Kernel.system *args
 end
@@ -79,7 +79,12 @@ ensure
 end
 
 def macos_version
-  @macos_version ||= /(10\.\d+)(\.\d+)?/.match(`/usr/bin/sw_vers -productVersion`).captures.first.to_f
+  @macos_version ||= /(\d+)\.(\d+)\.(\d+)?/.match(`/usr/bin/sw_vers -productVersion`).captures
+  {
+    major: @macos_version[0].to_i || 0,
+    minor: @macos_version[1].to_i || 0,
+    patch: @macos_version[2].to_i || 0
+  }
 end
 
 def file_exists file_path
@@ -92,8 +97,8 @@ end
 
 # Leaving this here even though it should work regardless of version number.
 # I have no way to test Mac OS versions before 10.6 to verify, comment out the following line at your own risk.
-def current_os? 
-  abort "MacOS too old, upgrade to at least 10.6" if macos_version < 10.5 
+def current_os?
+  abort "MacOS too old, upgrade to at least 10.6" if macos_version[:major] < 10 && macos_version[:minor] < 5
 end
 
 def not_root?
@@ -110,7 +115,7 @@ Installing Git:
 
   Othwerise use one of the following links
     http://git-scm.com/downloads/
-    http://code.google.com/p/git-osx-installer/  
+    http://code.google.com/p/git-osx-installer/
 EOABORT
 end
 
@@ -123,8 +128,8 @@ EOABORT
 end
 
 def arcanist_already_installed?
-abort <<-EOABORT if file_exists ARCANIST_INSTALL_LOCATION 
-#{ARCANIST_INSTALL_LOCATION} already exists!  Looks like you've already installed this software. 
+abort <<-EOABORT if file_exists ARCANIST_INSTALL_LOCATION
+#{ARCANIST_INSTALL_LOCATION} already exists!  Looks like you've already installed this software.
 If you wish to proceed with installation manually delete #{ARCANIST_INSTALL_LOCATION}.
 
 Type 'arc upgrade' to upgrade your current installation instead of reinstalling.
@@ -137,7 +142,7 @@ It seem's you already have a piece of software installed called arc in /usr/loca
 either installed arcanist previously or have a conflicting piece of software installed with the same name.  You
 should either uninstall the conflicting arc software or execute a manual install.
 
-Conflict: /usr/local/bin/arc 
+Conflict: /usr/local/bin/arc
 EOABORT
 end
 
@@ -172,9 +177,9 @@ if STDIN.tty?
 end
 
 sudo "/bin/mkdir /usr/local/bin" unless file_exists "/usr/local/bin"
- 
+
 if File.directory? "/usr/local"
-  sudo "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION 
+  sudo "/bin/mkdir #{ARCANIST_INSTALL_LOCATION}" unless file_exists ARCANIST_INSTALL_LOCATION
 
   # The reason we do this it to allow upgrading of arcanist through 'arc upgrade' without requiring sudo
   sudo "/bin/chmod", "g+rwx", ARCANIST_INSTALL_LOCATION
@@ -182,7 +187,7 @@ if File.directory? "/usr/local"
 end
 
 Dir.chdir ARCANIST_INSTALL_LOCATION do
-  ohai "Downloading and Installing Arcanist..." 
+  ohai "Downloading and Installing Arcanist..."
   system "git clone https://github.com/facebook/arcanist.git"
   ohai "Downloading and Installing libphutil..."
   system "git clone https://github.com/facebook/libphutil.git"
@@ -200,7 +205,7 @@ Arcanist comes with a bash completion script.  To include it source the followin
 
 EOS
 ohai "Installation successful!"
-puts "To confirm installation please type:" 
+puts "To confirm installation please type:"
 puts "  arc upgrade"
 puts "  arc help"
 puts "If neither command errors out the install was *truly* successful"
