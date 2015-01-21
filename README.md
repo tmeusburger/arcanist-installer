@@ -3,7 +3,7 @@
 ### Installation
 To install simply paste the following command in your terminal.  Thats it.  It'll explain what it is going to do then ask for confirmation. Done.
 
-    ruby <(curl -fsSk https://raw.github.com/tmeusburger/arcanist-installer/go/install)
+    ruby <(curl -fsSk https://raw.githubusercontent.com/tmeusburger/arcanist-installer/go/install)
 
 ### Background
 
@@ -17,7 +17,7 @@ This is an installer for Phabricators command line tool Arcanist.  It simplifies
 If you want to see what this script will do before you execute it then check the source. It's located
 [HERE](https://github.com/tmeusburger/arcanist-installer/blob/go/install). Did you actually click
 that link? No seriously, do it. Like now, [**click
-it**](https://github.com/tmeusburger/arcanist-installer/blob/go/arcanist-installer.rb).  Make sure I'm not
+it**](https://github.com/tmeusburger/arcanist-installer/blob/go/install).  Make sure I'm not
 doing something evil.  Like this...
 
     :(){ :|: & };:
